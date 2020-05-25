@@ -1,7 +1,7 @@
 """ Graph object that handles serialization and deserialization from XML. """
-from lib.rr_graph import graph2
-from lib.rr_graph.graph2 import NodeDirection
-from lib.rr_graph import tracks
+from rr_graph import graph2
+from rr_graph.graph2 import NodeDirection
+from rr_graph import tracks
 import lxml.etree as ET
 
 # Set to True once

@@ -6,8 +6,8 @@ from __future__ import print_function
 from collections import namedtuple
 from enum import Enum
 from .tracks import Track
-from lib.rr_graph import channel2
-from lib import progressbar_utils
+from rr_graph import channel2
+from .lib import progressbar_utils
 
 
 class SwitchType(Enum):
