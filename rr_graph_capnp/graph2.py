@@ -1,7 +1,7 @@
 import os.path
 import re
-from lib.rr_graph import graph2
-from lib.rr_graph import tracks
+from rr_graph import graph2
+from rr_graph import tracks
 import gc
 
 import capnp
