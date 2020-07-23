@@ -210,6 +210,7 @@ def graph_from_capnp(
         input_file_name,
         progressbar=None,
         filter_nodes=True,
+        load_nodes=True,
         load_edges=False,
         rebase_nodes=False,
 ):
@@ -218,6 +219,7 @@ def graph_from_capnp(
     file.
     """
     if rebase_nodes:
+        assert load_nodes
         assert not load_edges
 
     if progressbar is None:
@@ -243,17 +245,18 @@ def graph_from_capnp(
         grid = [read_grid_loc(g) for g in graph.grid.gridLocs]
 
         nodes = []
-        for n in progressbar(graph.rrNodes.nodes):
-            if filter_nodes and n.type not in ['source', 'sink', 'opin', 'ipin'
-                                               ]:
-                continue
+        if load_nodes:
+            for n in progressbar(graph.rrNodes.nodes):
+                if filter_nodes and n.type not in ['source', 'sink', 'opin', 'ipin'
+                                                ]:
+                    continue
 
-            if rebase_nodes:
-                node = read_node(n, new_node_id=len(nodes))
-            else:
-                node = read_node(n)
+                if rebase_nodes:
+                    node = read_node(n, new_node_id=len(nodes))
+                else:
+                    node = read_node(n)
 
-            nodes.append(node)
+                nodes.append(node)
 
         edges = []
         if load_edges:
@@ -288,6 +291,7 @@ class Graph(object):
             build_pin_edges=True,
             rebase_nodes=True,
             filter_nodes=True,
+            load_nodes=True,
     ):
         if progressbar is None:
             progressbar = lambda x: x  # noqa: E731
@@ -307,6 +311,7 @@ class Graph(object):
             progressbar=progressbar,
             filter_nodes=filter_nodes,
             rebase_nodes=rebase_nodes,
+            load_nodes=load_nodes,
         )
         graph_input['build_pin_edges'] = build_pin_edges
 
