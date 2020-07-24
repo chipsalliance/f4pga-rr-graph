@@ -328,17 +328,17 @@ class Graph(object):
             self.loc_map[key] = loc
 
             for pin_class_idx, pin_class in enumerate(block_type.pin_class):
-                pin_class_node = self.loc_pin_class_map[
-                    (loc.x, loc.y, pin_class_idx)]
-
                 # Skip building IPIN -> SINK and OPIN -> SOURCE graph if edges
                 # are not required.
                 if not build_pin_edges:
                     continue
 
+                pin_class_node = self.loc_pin_class_map[
+                    (loc.x, loc.y, pin_class_idx)]
+
                 for pin in pin_class.pin:
                     for pin_node, _ in self.loc_pin_map[(loc.x, loc.y,
-                                                         pin.ptc)]:
+                                                        pin.ptc)]:
                         if pin_class.type == PinType.OUTPUT:
                             self.add_edge(
                                 src_node=pin_class_node,
