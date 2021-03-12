@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-# Run `python3 -m unittest utils.lib.rr_graph.tests.test_channel`
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020-2021  The SymbiFlow Authors.
+#
+# Use of this source code is governed by a ISC-style
+# license that can be found in the LICENSE file or at
+# https://opensource.org/licenses/ISC
+#
+# SPDX-License-Identifier: ISC
+
 import unittest
 
 from ..channel import Track, ChannelGrid
