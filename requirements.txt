@@ -1,0 +1,5 @@
+# Install setup_requires
+setuptools>=42
+wheel
+# Install local package
+-e .
