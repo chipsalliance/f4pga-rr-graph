@@ -73,6 +73,14 @@ def graph_from_xml(
     nodes = []
     edges = []
 
+    # Node direction map
+    node_direction_map = {
+        None: graph2.NodeDirection.NO_DIR,
+        "INC_DIR": graph2.NodeDirection.INC_DIR,
+        "DEC_DIR": graph2.NodeDirection.DEC_DIR,
+        "BI_DIR": graph2.NodeDirection.BI_DIR,
+    }
+
     # Itertate over XML elements
     switch_timing = None
     switch_sizing = None
@@ -232,6 +240,9 @@ def graph_from_xml(
             ]:
                 continue
 
+            direction = element.get("direction", None)
+            direction = node_direction_map[direction]
+
             # Dropping metadata for now
             metadata = None
 
@@ -239,14 +250,12 @@ def graph_from_xml(
                 graph2.Node(
                     id=int(element.attrib['id']),
                     type=node_type,
-                    direction=graph2.NodeDirection.NO_DIR,
+                    direction=direction,
                     capacity=int(element.attrib['capacity']),
                     loc=node_loc,
                     timing=node_timing,
                     metadata=metadata,
                     segment=node_segment,
-                    canonical_loc=None,
-                    connection_box=None,
                 )
             )
 
@@ -286,6 +295,7 @@ class Graph(object):
             build_pin_edges=True,
             rebase_nodes=True,
             filter_nodes=True,
+            load_edges=False,
     ):
         if progressbar is None:
             progressbar = lambda x: x  # noqa: E731
@@ -295,7 +305,10 @@ class Graph(object):
         self.output_file_name = output_file_name
 
         graph_input = graph_from_xml(
-            input_file_name, progressbar, filter_nodes=filter_nodes
+            input_file_name,
+            progressbar,
+            filter_nodes=filter_nodes,
+            load_edges=load_edges,
         )
         graph_input['build_pin_edges'] = build_pin_edges
 
@@ -404,25 +417,6 @@ class Graph(object):
 
         self._end_xml_tag()
 
-    def _write_connection_box(self, connection_box):
-        """
-        Writes the RR graph connection box.
-        """
-        attrib = {
-            "x_dim": connection_box.x_dim,
-            "y_dim": connection_box.y_dim,
-            "num_boxes": len(connection_box.boxes)
-        }
-
-        self._begin_xml_tag("connection_boxes", attrib)
-
-        for idx, box in enumerate(connection_box.boxes):
-            self._write_xml_tag("connection_box", {"id": idx, "name": box})
-            if DEBUG >= 2:
-                break
-
-        self._end_xml_tag()
-
     def _write_nodes(self, nodes, node_remap):
         """ Serialize list of Node objects to XML.
 
@@ -477,22 +471,6 @@ class Graph(object):
             if node.segment is not None:
                 attrib = {"segment_id": node.segment.segment_id}
                 self._write_xml_tag("segment", attrib)
-
-            if node.connection_box is not None:
-                attrib = {
-                    "x": node.connection_box.x,
-                    "y": node.connection_box.y,
-                    "id": node.connection_box.id,
-                    "site_pin_delay": node.connection_box.site_pin_delay,
-                }
-                self._write_xml_tag("connection_box", attrib)
-
-            if node.canonical_loc is not None:
-                attrib = {
-                    "x": node.canonical_loc.x,
-                    "y": node.canonical_loc.y,
-                }
-                self._write_xml_tag("canonical_loc", attrib)
 
             self._end_xml_tag()
             if DEBUG >= 2:
@@ -659,7 +637,6 @@ class Graph(object):
     def serialize_to_xml(
             self,
             channels_obj,
-            connection_box_obj,
             nodes_obj,
             edges_obj,
             node_remap=lambda x: x
@@ -679,9 +656,6 @@ class Graph(object):
             self._write_xml_header()
 
             self._write_channels(channels_obj)
-
-            if connection_box_obj is not None:
-                self._write_connection_box(connection_box_obj)
 
             self._write_switches()
             self._write_segments()
