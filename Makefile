@@ -76,6 +76,12 @@ install: | $(ACTIVATE_SCRIPT)
 
 .PHONY: install
 
+test-like-ci: | $(ACTIVATE_SCRIPT)
+	${ACTIVATE} .github/actions/download-and-run-tests/install-test-requirements.py
+	${ACTIVATE} .github/actions/download-and-run-tests/run-tests.py
+
+.PHONY: test-like-ci
+
 test: | $(ACTIVATE_SCRIPT)
 	${ACTIVATE} pytest
 
