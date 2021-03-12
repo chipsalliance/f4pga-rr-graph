@@ -22,10 +22,10 @@ import enum
 from collections import defaultdict
 from collections import namedtuple
 
-from ..asserts import assert_eq
-from ..asserts import assert_type
+from .utils.asserts import assert_eq
+from .utils.asserts import assert_type
 
-from ..rr_graph import Position, P
+from . import Position, P
 
 _NamedPosition = namedtuple("NamedPosition", ["pos", "names"])
 

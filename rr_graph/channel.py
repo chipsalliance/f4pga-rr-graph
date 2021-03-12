@@ -40,10 +40,11 @@ from . import Position
 from . import Size
 
 from . import node_pos, single_element
-from ..asserts import assert_eq
-from ..asserts import assert_len_eq
-from ..asserts import assert_type
-from ..asserts import assert_type_or_none
+from .utils.asserts import assert_eq
+from .utils.asserts import assert_len_eq
+from .utils.asserts import assert_type
+from .utils.asserts import assert_type_or_none
+
 
 # FIXME: doctests and static_property are not playing nice together.
 # from . import static_property

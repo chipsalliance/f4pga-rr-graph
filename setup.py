@@ -45,6 +45,7 @@ setuptools.setup(
     include_package_data=True,
     setup_requires=setup_requires,
     install_requires=[
+        "progressbar2",
         "simplejson",
         "pycapnp",
         "lxml",

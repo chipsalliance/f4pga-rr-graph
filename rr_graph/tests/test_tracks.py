@@ -10,6 +10,7 @@
 # SPDX-License-Identifier: ISC
 
 import unittest
+
 from ..tracks import Track, Tracks, Direction
 
 
