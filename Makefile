@@ -75,6 +75,6 @@ install: | $(ACTIVATE_SCRIPT)
 .PHONY: install
 
 test: | $(ACTIVATE_SCRIPT)
-	${ACTIVATE} python setup.py test
+	${ACTIVATE} pytest
 
 .PHONY: test
