@@ -78,3 +78,8 @@ test: | $(ACTIVATE_SCRIPT)
 	${ACTIVATE} pytest
 
 .PHONY: test
+
+version: | $(ACTIVATE_SCRIPT)
+	${ACTIVATE} python setup.py --version
+
+.PHONY: version
