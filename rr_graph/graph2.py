@@ -327,12 +327,12 @@ class Graph(object):
             assert key not in self.loc_map
             self.loc_map[key] = loc
 
-            for pin_class_idx, pin_class in enumerate(block_type.pin_class):
-                # Skip building IPIN -> SINK and OPIN -> SOURCE graph if edges
-                # are not required.
-                if not build_pin_edges:
-                    continue
+            # Skip building IPIN -> SINK and OPIN -> SOURCE graph if edges
+            # are not required.
+            if not build_pin_edges:
+                continue
 
+            for pin_class_idx, pin_class in enumerate(block_type.pin_class):
                 pin_class_node = self.loc_pin_class_map[
                     (loc.x, loc.y, pin_class_idx)]
 
