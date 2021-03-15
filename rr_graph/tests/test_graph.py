@@ -11,13 +11,13 @@
 
 import unittest
 
+import lxml.etree as ET
+
 from .. import graph, P, Size
 from ..graph import (
     Pin, PinClass, PinClassDirection, Block, BlockGrid, BlockType, Segment,
     Switch, SwitchType, RoutingGraph, RoutingGraphPrinter
 )
-
-import lxml.etree as ET
 
 
 class TestGraph(unittest.TestCase):

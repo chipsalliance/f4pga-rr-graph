@@ -11,6 +11,7 @@
 
 
 import unittest
+
 from ..points import NamedPosition, StraightSegment, Position, NP
 
 

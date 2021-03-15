@@ -12,8 +12,23 @@
 
 import setuptools
 
+
+# Read in the module description from the README.md file.
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
+
+# Read in the setup_requires from the requirements.txt file.
+setup_requires = []
+with open('requirements.txt') as fh:
+    for r in fh:
+        if '#' in r:
+            r = r[:r.find('#')]
+        r = r.strip()
+        if not r:
+            continue
+        if r not in ('-e .',):
+            setup_requires.append(r)
 
 
 setuptools.setup(
@@ -28,7 +43,9 @@ setuptools.setup(
     python_requires=">=3.7",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    setup_requires=setup_requires,
     install_requires=[
+        "progressbar2",
         "simplejson",
         "pycapnp",
         "lxml",

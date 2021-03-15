@@ -1,0 +1,7 @@
+# Install setup_requires
+setuptools>=42
+wheel
+# Testing tools
+pytest
+# Install local package
+-e .

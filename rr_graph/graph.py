@@ -64,12 +64,12 @@ from . import Offset
 from . import node_pos, single_element
 from .channel import Channels, Track
 
-from ..asserts import assert_eq
-from ..asserts import assert_is
-from ..asserts import assert_type
-from ..asserts import assert_type_or_none
+from .utils.asserts import assert_eq
+from .utils.asserts import assert_is
+from .utils.asserts import assert_type
+from .utils.asserts import assert_type_or_none
 
-from ..collections_extra import MostlyReadOnly
+from .utils.collections_extra import MostlyReadOnly
 
 _DEFAULT_MARKER = []
 
