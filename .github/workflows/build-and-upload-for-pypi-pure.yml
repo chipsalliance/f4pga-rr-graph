@@ -28,8 +28,19 @@ jobs:
       continue-on-error: false
       with:
         workflow: .github/workflows/build-and-upload-for-pypi-pure.yml
-    - uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v2
+      with:
+      # Always clone the full depth so git-describe works.
+        fetch-depth: 0
+        submodules: true
 
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -115,8 +126,19 @@ jobs:
       continue-on-error: false
       with:
         workflow: .github/workflows/build-and-upload-for-pypi-pure.yml
-    - uses: actions/checkout@v2
+    - name: 🧰 Checkout
+      uses: actions/checkout@v2
+      with:
+      # Always clone the full depth so git-describe works.
+        fetch-depth: 0
+        submodules: true
 
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:

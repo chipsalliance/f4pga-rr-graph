@@ -192,7 +192,7 @@ jobs:
         - pip install --verbose -e .
       fail-fast: false
 
-    name: Checkout with '${{ matrix.cmd }}' (${{ matrix.os }})
+    name: checkout with `${{ matrix.cmd }}` (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
     - uses: mithro/actions-includes@main
@@ -206,6 +206,13 @@ jobs:
       # Always clone the full depth so git-describe works.
         fetch-depth: 0
         submodules: true
+
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -358,7 +365,7 @@ jobs:
         - ubuntu-20.04
       fail-fast: false
 
-    name: clone and `make test`
+    name: clone and `make test` (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
     - uses: mithro/actions-includes@main
@@ -372,6 +379,13 @@ jobs:
       # Always clone the full depth so git-describe works.
         fetch-depth: 0
         submodules: true
+
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -389,13 +403,8 @@ jobs:
   # Install from a sdist package
   # ----------------------------------------------------------------------
   BuildSdist:
-    strategy:
-      matrix:
-        os:
-        - ubuntu-20.04
-      fail-fast: false
-
-    runs-on: ${{ matrix.os }}
+    name: (building sdist)
+    runs-on: ubuntu-20.04
     steps:
     - uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
@@ -408,6 +417,13 @@ jobs:
       # Always clone the full depth so git-describe works.
         fetch-depth: 0
         submodules: true
+
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -468,6 +484,7 @@ jobs:
         - ubuntu-20.04
       fail-fast: false
 
+    name: from sdist (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     needs: BuildSdist
     steps:
@@ -636,6 +653,7 @@ jobs:
         - ubuntu-20.04
       fail-fast: false
 
+    name: (building wheel on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
     - uses: mithro/actions-includes@main
@@ -649,6 +667,13 @@ jobs:
       # Always clone the full depth so git-describe works.
         fetch-depth: 0
         submodules: true
+
+    - name: Git Info
+      run: |
+        git branch -v -a
+        git tag -l
+        git log -n1
+        git describe
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -703,6 +728,7 @@ jobs:
         - ubuntu-20.04
       fail-fast: false
 
+    name: from wheel (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     needs: BuildWheel
     steps:
