@@ -19,3 +19,10 @@ runs:
       # Always clone the full depth so git-describe works.
       fetch-depth: 0
       submodules: true
+
+  - name: Git Info
+    run: |
+      git branch -v -a
+      git tag -l
+      git log -n1
+      git describe
