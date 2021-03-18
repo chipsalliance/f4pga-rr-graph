@@ -67,7 +67,7 @@ setuptools.setup(
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: ISC License",
+        "License :: OSI Approved :: ISC License (ISCL)",
         "Operating System :: OS Independent",
     ],
 )
