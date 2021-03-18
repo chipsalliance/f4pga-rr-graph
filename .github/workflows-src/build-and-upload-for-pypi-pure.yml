@@ -19,3 +19,5 @@ jobs:
     includes: SymbiFlow/actions/includes/workflows/python/build-and-upload-for-pypi-pure@main
     with:
       root_user: SymbiFlow
+      checkout-action:
+        includes: /checkout
