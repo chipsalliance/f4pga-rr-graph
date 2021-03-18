@@ -56,17 +56,23 @@ build: | $(ACTIVATE_SCRIPT)
 # PYPI_TEST = --repository-url https://test.pypi.org/legacy/
 PYPI_TEST = --repository testpypi
 
-upload-test: build | $(ACTIVATE_SCRIPT)
+upload-test: | $(ACTIVATE_SCRIPT)
+	make clean
+	make build
 	${ACTIVATE} twine upload ${PYPI_TEST} dist/*
 
 .PHONY: upload-test
 
-upload: build | $(ACTIVATE_SCRIPT)
+upload: | $(ACTIVATE_SCRIPT)
+	make clean
+	make build
 	${ACTIVATE} twine upload --verbose dist/*
 
 .PHONY: upload
 
-check: build | $(ACTIVATE_SCRIPT)
+check: | $(ACTIVATE_SCRIPT)
+	make clean
+	make build
 	${ACTIVATE} twine check dist/*.whl
 
 .PHONY: check
