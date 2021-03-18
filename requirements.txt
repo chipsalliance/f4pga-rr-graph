@@ -1,5 +1,6 @@
 # Install setup_requires
 setuptools>=42
+setuptools_scm
 wheel
 # Testing tools
 pytest

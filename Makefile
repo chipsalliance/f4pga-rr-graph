@@ -42,6 +42,8 @@ venv:
 	# Setup requirements.
 	${ACTIVATE} pip install -r requirements.txt
 	@${ACTIVATE} python -c "from rr_graph.version import version as v; print('Installed version:', v)"
+	# Infra requirements.
+	${ACTIVATE} pip install git+https://github.com/mithro/actions-includes.git
 
 .PHONY: venv
 
@@ -74,7 +76,31 @@ install: | $(ACTIVATE_SCRIPT)
 
 .PHONY: install
 
+test-like-ci: | $(ACTIVATE_SCRIPT)
+	${ACTIVATE} .github/actions/download-and-run-tests/install-test-requirements.py
+	${ACTIVATE} .github/actions/download-and-run-tests/run-tests.py
+
+.PHONY: test-like-ci
+
 test: | $(ACTIVATE_SCRIPT)
 	${ACTIVATE} pytest
 
 .PHONY: test
+
+version: | $(ACTIVATE_SCRIPT)
+	${ACTIVATE} python setup.py --version
+
+.PHONY: version
+
+# Format the GitHub workflow files
+GHA_WORKFLOW_SRCS = $(wildcard .github/workflows-src/*.yml)
+GHA_WORKFLOW_OUTS = $(addprefix .github/workflows/,$(notdir $(GHA_WORKFLOW_SRCS)))
+
+.github/workflows/%.yml: .github/workflows-src/%.yml | $(ACTIVATE_SCRIPT)
+	${ACTIVATE} python -m actions_includes $< $@
+
+format-gha: $(GHA_WORKFLOW_OUTS) | $(ACTIVATE_SCRIPT)
+	@echo $(GHA_WORKFLOW_OUTS)
+	@true
+
+.PHONY: format-gha
