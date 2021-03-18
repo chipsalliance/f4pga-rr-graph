@@ -14,17 +14,15 @@ import setuptools
 
 
 # Generate the version number
-def scm_version():
-    def local_scheme(version):
-        if version.tag and not version.distance:
-            return version.format_with("")
-        else:
-            return version.format_choice("+{node}", "+{node}.dirty")
+def get_version():
+    def clean_scheme(version):
+        from setuptools_scm.version import get_local_node_and_date
+        return get_local_node_and_date(version) if version.dirty else ''
+
     return {
-        "relative_to": __file__,
-        "version_scheme": "post-release",
-        "local_scheme": local_scheme,
-        "write_to": "rr_graph/version.py",
+        'write_to': 'rr_graph/version.py',
+        'version_scheme': 'post-release',
+        'local_scheme': clean_scheme,
     }
 
 
@@ -49,7 +47,7 @@ with open('requirements.txt') as fh:
 setuptools.setup(
     # Package human readable information
     name="rr-graph",
-    use_scm_version=scm_version(),
+    use_scm_version=get_version(),
     author="SymbiFlow Authors",
     author_email="symbiflow@lists.librecores.org",
     description="SymbiFlow RR Graph libraries",
