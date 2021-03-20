@@ -82,9 +82,13 @@ install: | $(ACTIVATE_SCRIPT)
 
 .PHONY: install
 
-test-like-ci: | $(ACTIVATE_SCRIPT)
-	${ACTIVATE} .github/actions/download-and-run-tests/install-test-requirements.py
-	${ACTIVATE} .github/actions/download-and-run-tests/run-tests.py
+TEST_LIKE_CI_RUN_SH := venv/actions/includes/actions/python/run-installed-tests/run.sh
+$(TEST_LIKE_CI_RUN_SH):
+	if [ ! -d venv/actions ]; then git clone https://github.com/SymbiFlow/actions venv/actions; fi
+	cd venv/actions && git pull
+
+test-like-ci: | $(TEST_LIKE_CI_RUN_SH) $(ACTIVATE_SCRIPT)
+	${ACTIVATE} $(TEST_LIKE_CI_RUN_SH)
 
 .PHONY: test-like-ci
 
