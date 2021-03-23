@@ -44,3 +44,51 @@ repository is licensed under the very permissive
 A copy can be found in the [`LICENSE`](LICENSE) file.
 
 All new contributions must also be released under this license.
+
+# Installing
+
+## From PyPI
+
+`pip install rr-graph`
+
+*FYI:* Builds are **automatically** published to GitHub on every push to this repository.
+
+## Direct from GitHub
+
+`pip install git+https://github.com/SymbiFlow/symbiflow-rr-graph.git#egg=rr-graph`
+
+## Direct from checkout
+
+`python setup.py install` or `python setup.py develop`
+
+
+# Developing
+
+To setup a local development environment use the `make venv` target which will
+build you a [Python virtualenv](https://virtualenv.pypa.io/en/latest/) (in the
+[`venv` directory](./venv/)) with the needed packages and tools.
+
+The `make version` target will output the current version of the `rr-graph`
+library.
+
+## Running tests
+
+To run the tests, run `make test`.
+
+If you have an issue with the CI disagreeing with the output of your local
+`make test` output, you can also try the `make test-like-ci` target to closer
+match how the CI system runs the tests.
+
+## Formatting
+
+To run automated formatting over the repository, use `make format`.
+
+### Updating GitHub Actions
+
+The `make format-gha` target will update the GitHub Actions under
+[`.github/workflows`](./github/workflows) with the latest version of the
+included tasks.
+
+It is recommended that you commit these updates separately from your other
+changes.
+
