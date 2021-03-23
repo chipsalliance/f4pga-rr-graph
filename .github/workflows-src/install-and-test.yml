@@ -22,4 +22,6 @@ jobs:
       checkout-action:
         includes: /checkout
       test-action:
-        includes: /download-and-run-tests
+        includes: SymbiFlow/actions/includes/actions/python/run-installed-tests@main
+        with:
+          module: rr-graph
