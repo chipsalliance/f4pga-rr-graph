@@ -47,15 +47,14 @@ venv:
 
 .PHONY: venv
 
+# Packaging and uploading to PyPI
 build: | $(ACTIVATE_SCRIPT)
 	${ACTIVATE} python -m build --sdist
 	${ACTIVATE} python -m build --wheel
 
 .PHONY: build
 
-# PYPI_TEST = --repository-url https://test.pypi.org/legacy/
-PYPI_TEST = --repository testpypi
-
+PYPI_TEST = --repository-url https://test.pypi.org/legacy/
 upload-test: | $(ACTIVATE_SCRIPT)
 	make clean
 	make build
@@ -82,6 +81,7 @@ install: | $(ACTIVATE_SCRIPT)
 
 .PHONY: install
 
+# Testing the library
 TEST_LIKE_CI_RUN_SH := venv/actions/includes/actions/python/run-installed-tests/run.sh
 $(TEST_LIKE_CI_RUN_SH):
 	if [ ! -d venv/actions ]; then git clone https://github.com/SymbiFlow/actions venv/actions; fi
@@ -102,7 +102,7 @@ version: | $(ACTIVATE_SCRIPT)
 
 .PHONY: version
 
-# Format the GitHub workflow files
+# Format the code
 GHA_WORKFLOW_SRCS = $(wildcard .github/workflows-src/*.yml)
 GHA_WORKFLOW_OUTS = $(addprefix .github/workflows/,$(notdir $(GHA_WORKFLOW_SRCS)))
 
@@ -114,3 +114,8 @@ format-gha: $(GHA_WORKFLOW_OUTS) | $(ACTIVATE_SCRIPT)
 	@true
 
 .PHONY: format-gha
+
+format:
+	$(MAKE) format-gha
+
+.PHONY: format
