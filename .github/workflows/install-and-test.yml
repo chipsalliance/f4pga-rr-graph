@@ -30,7 +30,8 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -200,7 +201,8 @@ jobs:
     name: checkout with `${{ matrix.cmd }}` (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -378,7 +380,8 @@ jobs:
     name: clone and `make test` (on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -416,7 +419,8 @@ jobs:
     name: (building sdist)
     runs-on: ubuntu-20.04
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -498,7 +502,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: BuildSdist
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -671,7 +676,8 @@ jobs:
     name: (building wheel on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
@@ -747,7 +753,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: BuildWheel
     steps:
-    - uses: mithro/actions-includes@main
+    - name: ⏰ 🛂 📕 - Checking workflow expansion is up to date
+      uses: mithro/actions-includes@main
       if: runner.os == 'Linux'
       continue-on-error: false
       with:
