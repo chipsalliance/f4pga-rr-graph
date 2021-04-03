@@ -20,7 +20,7 @@ endif
 ACTIVATE=[[ -e $(ACTIVATE_SCRIPT) ]] && source $(ACTIVATE_SCRIPT);
 
 clean:
-	rm -rf build dist pythondata_*.egg-info
+	rm -rf build dist *.egg-info
 
 .PHONY: clean
 
