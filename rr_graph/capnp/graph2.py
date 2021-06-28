@@ -301,6 +301,7 @@ class Graph(object):
             rebase_nodes=True,
             filter_nodes=True,
             load_nodes=True,
+            load_edges=False,
     ):
         if progressbar is None:
             progressbar = lambda x: x  # noqa: E731
@@ -321,6 +322,7 @@ class Graph(object):
             filter_nodes=filter_nodes,
             rebase_nodes=rebase_nodes,
             load_nodes=load_nodes,
+            load_edges=load_edges,
         )
         graph_input['build_pin_edges'] = build_pin_edges
 
