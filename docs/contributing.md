@@ -12,7 +12,7 @@ All contributions should be sent as
 
 All software (code, associated documentation, support files, etc) in the
 project repository are licensed under the very permissive
-[ISC Licence](https://opensource.org/licenses/ISC).
+[Apache-2.0 Licence](https://www.apache.org/licenses/LICENSE-2.0).
 
 A copy can be found in the [`LICENSE`](LICENSE) file.
 
