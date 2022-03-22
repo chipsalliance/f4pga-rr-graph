@@ -56,12 +56,12 @@ setuptools.setup(
     # Package human readable information
     name="rr-graph",
     use_scm_version=get_version(),
-    author="SymbiFlow Authors",
-    author_email="symbiflow@lists.librecores.org",
-    description="SymbiFlow RR Graph libraries",
+    author="F4PGA Authors",
+    author_email="f4pga-wg@lists.chipsalliance.org",
+    description="F4PGA RR Graph libraries",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/SymbiFlow/symbiflow-rr-graph",
+    url="https://github.com/chipsalliance/f4pga-rr-graph",
     license="Apache-2.0",
     license_files=["LICENSE"],
     classifiers=[

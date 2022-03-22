@@ -1,7 +1,7 @@
-# SymbiFlow Routing Resources Graph (`rr-graph`) Python Libraries
+# F4PGA Routing Resources Graph (`rr-graph`) Python Libraries
 
-[![License](https://img.shields.io/github/license/SymbiFlow/symbiflow-rr-graph.svg)](https://github.com/SymbiFlow/symbiflow-rr-graph/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/SymbiFlow/symbiflow-rr-graph)](https://github.com/SymbiFlow/symbiflow-rr-graph/issues)
+[![License](https://img.shields.io/github/license/chipsalliance/f4pga-rr-graph.svg)](https://github.com/chipsalliance/f4pga-rr-graph/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/chipsalliance/f4pga-rr-graph)](https://github.com/chipsalliance/f4pga-rr-graph/issues)
 ![PyPI](https://img.shields.io/pypi/v/rr-graph)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rr-graph)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/rr-graph)
@@ -9,7 +9,7 @@
 
 This repository contains a Python library and utilities for working with
 ["Routing Resource Graph" (`rr-graph`) files](https://docs.verilogtorouting.org/en/latest/vpr/file_formats/#routing-resource-graph-file-format-xml)
-used by [SymbiFlow](https://symbiflow.github.io) and
+used by [F4PGA](https://f4pga.org) and
 [Verilog to Routing](https://verilogtorouting.org).
 
 It supports both the [XML](https://en.wikipedia.org/wiki/XML) and
@@ -55,7 +55,7 @@ All new contributions must also be released under this license.
 
 ## Direct from GitHub
 
-`pip install git+https://github.com/SymbiFlow/symbiflow-rr-graph.git#egg=rr-graph`
+`pip install git+https://github.com/chipsalliance/f4pga-rr-graph.git#egg=rr-graph`
 
 ## Direct from checkout
 
