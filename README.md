@@ -39,7 +39,7 @@ A few important points;
 
 All software (code, associated documentation, support files, etc) in this
 repository is licensed under the very permissive
-[ISC Licence](https://opensource.org/licenses/ISC).
+[Apache-2.0 Licence](https://www.apache.org/licenses/LICENSE-2.0).
 
 A copy can be found in the [`LICENSE`](LICENSE) file.
 
